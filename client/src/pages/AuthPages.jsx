@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { apiError } from '../services/api.js';
 
 function AuthForm({ register = false }) {
   const { login, register: signUp } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [fields, setFields] = useState({ name: '', email: '', password: '', studentId: '' });
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -13,7 +14,8 @@ function AuthForm({ register = false }) {
     event.preventDefault(); setError(''); setBusy(true);
     try {
       if (register) await signUp(fields); else await login(fields.email, fields.password);
-      navigate(register ? '/student' : (JSON.parse(localStorage.getItem('attendance_user')).role === 'teacher' ? '/teacher' : '/student'));
+      const requestedPath = searchParams.get('next');
+      navigate(register ? '/student' : (requestedPath || (JSON.parse(localStorage.getItem('attendance_user')).role === 'teacher' ? '/teacher/portal' : '/student')));
     } catch (requestError) { setError(apiError(requestError)); } finally { setBusy(false); }
   }
   return <section className="auth-card card">

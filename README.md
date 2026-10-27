@@ -38,7 +38,7 @@ A simple full-stack academic prototype using React/Vite, Express, MongoDB/Mongoo
 
 ## Using the prototype
 
-1. Log in with the seeded teacher account.
+1. Log in with the seeded teacher account and open **Teacher Portal** (`/teacher/portal`).
 2. Create a session with a subject and class name, then open it and choose **Start attendance**.
 3. A backend-generated QR payload appears. Its random token expires after 60 seconds; use **Refresh QR** when needed.
 4. Register a student account in another browser/device, log in, choose **Scan attendance**, allow the camera, and scan the teacher QR.

@@ -12,6 +12,8 @@ export default function Layout({ children }) {
           <Link to={user.role === 'teacher' ? '/teacher' : '/student'}>Dashboard</Link>
           {user.role === 'student' && <Link to="/scan">Scan</Link>}
           {user.role === 'student' && <Link to="/history">History</Link>}
+          {user.role === 'teacher' && <Link className="portal-nav-link" to="/teacher/portal">Generate QR</Link>}
+          {user.role === 'teacher' && <Link to="/teacher/portal">Teacher Portal</Link>}
           {user.role === 'teacher' && <Link to="/reports">Reports</Link>}
           <button className="link-button" onClick={() => { logout(); navigate('/login'); }}>Log out</button>
         </nav>}

@@ -14,6 +14,7 @@ export default function App() {
   return <AuthProvider><BrowserRouter><Layout><Routes>
     <Route path="/" element={<HomePage />} /><Route path="/login" element={<LoginPage />} /><Route path="/register" element={<RegisterPage />} />
     <Route path="/teacher" element={<ProtectedRoute role="teacher"><TeacherDashboard /></ProtectedRoute>} />
+    <Route path="/teacher/portal" element={<ProtectedRoute role="teacher"><TeacherDashboard /></ProtectedRoute>} />
     <Route path="/teacher/session/:id" element={<ProtectedRoute role="teacher"><ActiveSession /></ProtectedRoute>} />
     <Route path="/teacher/session/:id/records" element={<ProtectedRoute role="teacher"><SessionRecords /></ProtectedRoute>} />
     <Route path="/reports" element={<ProtectedRoute role="teacher"><ReportsPage /></ProtectedRoute>} />
